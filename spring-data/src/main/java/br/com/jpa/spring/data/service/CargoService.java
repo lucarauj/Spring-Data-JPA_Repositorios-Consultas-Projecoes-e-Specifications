@@ -24,6 +24,8 @@ public class CargoService {
             System.out.println("0 - Sair");
             System.out.println("1 - Salvar");
             System.out.println("2 - Atualizar");
+            System.out.println("3 - Visualizar");
+            System.out.println("4 - Deletar");
 
             int action = scanner.nextInt();
 
@@ -33,6 +35,12 @@ public class CargoService {
                     break;
                 case 2:
                     atualizar(scanner);
+                    break;
+                case 3:
+                    visualizar();
+                    break;
+                case 4:
+                    deletar(scanner);
                     break;
                 default:
                     system = false;
@@ -64,6 +72,24 @@ public class CargoService {
             cargo.setDescricao(descricao);
             repository.save(cargo);
             System.out.println("Registro atualizado!");
+        } else {
+            System.out.println("Registro não encontrado");
+        }
+    }
+
+    private void visualizar() {
+        Iterable<Cargo> cargos = repository.findAll();
+        cargos.forEach(cargo -> System.out.println(cargo.toString()));
+    }
+
+    private void deletar(Scanner scanner) {
+        System.out.println("Digite o ID do registro:");
+        int id = scanner.nextInt();
+        Optional<Cargo> buscarCargo = repository.findById(id);
+
+        if(buscarCargo.isPresent()){
+            repository.deleteById(id);
+            System.out.println("Registro deletado!");
         } else {
             System.out.println("Registro não encontrado");
         }

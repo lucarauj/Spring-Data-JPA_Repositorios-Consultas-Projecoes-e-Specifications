@@ -39,6 +39,7 @@
 - @Id
 - @GeneratedValue(strategy = GenerationType.IDENTITY)
 - @Repository
+- @Service
 
 <br>
 
