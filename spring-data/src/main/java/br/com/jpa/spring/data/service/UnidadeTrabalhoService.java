@@ -1,20 +1,20 @@
 package br.com.jpa.spring.data.service;
 
-import br.com.jpa.spring.data.orm.Cargo;
-import br.com.jpa.spring.data.repository.CargoRepository;
+import br.com.jpa.spring.data.orm.UnidadeTrabalho;
+import br.com.jpa.spring.data.repository.UnidadeTrabalhoRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Scanner;
 
 @Service
-public class CargoService {
+public class UnidadeTrabalhoService {
 
     private Boolean system = true;
 
-    private final CargoRepository repository;
+    private final UnidadeTrabalhoRepository repository;
 
-    public CargoService(CargoRepository repository) {
+    public UnidadeTrabalhoService(UnidadeTrabalhoRepository repository) {
         this.repository = repository;
     }
 
@@ -49,28 +49,42 @@ public class CargoService {
     }
 
     private void salvar(Scanner scanner) {
-        System.out.println("Descrição do cargo:");
+        System.out.println("Nome da Unidade:");
         scanner.nextLine();
         String descricao = scanner.nextLine();
-        Cargo cargo = new Cargo();
-        cargo.setDescricao(descricao);
-        repository.save(cargo);
+
+        System.out.println("Endereço:");
+        String endereco = scanner.nextLine();
+
+        UnidadeTrabalho unidadeTrabalho = new UnidadeTrabalho();
+        unidadeTrabalho.setDescricao(descricao);
+        unidadeTrabalho.setEndereco(endereco);
+
+        repository.save(unidadeTrabalho);
         System.out.println("Registro salvo!");
     }
 
     private void atualizar(Scanner scanner) {
         System.out.println("Digite o ID do registro:");
         int id = scanner.nextInt();
-        Optional<Cargo> buscarCargo = repository.findById(id);
+        Optional<UnidadeTrabalho> buscarUnidade = repository.findById(id);
 
-        if(buscarCargo.isPresent()){
-            System.out.println("Nova descrição do cargo:");
+        if(buscarUnidade.isPresent()){
+
+            System.out.println("Nova descrição da Unidade:");
             scanner.nextLine();
             String descricao = scanner.nextLine();
-            Cargo cargo = new Cargo();
-            cargo.setId(id);
-            cargo.setDescricao(descricao);
-            repository.save(cargo);
+
+            System.out.println("Novo endereço:");
+            scanner.nextLine();
+            String endereco = scanner.nextLine();
+
+            UnidadeTrabalho unidadeTrabalho = new UnidadeTrabalho();
+            unidadeTrabalho.setId(id);
+            unidadeTrabalho.setDescricao(descricao);
+            unidadeTrabalho.setEndereco(endereco);
+
+            repository.save(unidadeTrabalho);
             System.out.println("Registro atualizado!");
         } else {
             System.out.println("Registro não encontrado");
@@ -78,16 +92,16 @@ public class CargoService {
     }
 
     private void visualizar() {
-        Iterable<Cargo> cargos = repository.findAll();
-        cargos.forEach(cargo -> System.out.println(cargo.toString()));
+        Iterable<UnidadeTrabalho> unidades = repository.findAll();
+        unidades.forEach(unidade -> System.out.println(unidade.toString()));
     }
 
     private void deletar(Scanner scanner) {
         System.out.println("Digite o ID do registro:");
         int id = scanner.nextInt();
-        Optional<Cargo> buscarCargo = repository.findById(id);
+        Optional<UnidadeTrabalho> buscarUnidade = repository.findById(id);
 
-        if(buscarCargo.isPresent()){
+        if(buscarUnidade.isPresent()){
             repository.deleteById(id);
             System.out.println("Registro deletado!");
         } else {

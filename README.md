@@ -40,6 +40,12 @@
 - @GeneratedValue(strategy = GenerationType.IDENTITY)
 - @Repository
 - @Service
+- @OneToMany
+- @ManyToOne
+- @ManyToMany
+- @JoinColumn
+- @Fetch
+- @JoinTable
 
 <br>
 

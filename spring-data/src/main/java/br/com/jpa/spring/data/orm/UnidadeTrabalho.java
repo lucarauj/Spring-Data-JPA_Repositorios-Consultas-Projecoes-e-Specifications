@@ -5,15 +5,16 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "cargos")
-public class Cargo {
+@Table(name = "unidades")
+public class UnidadeTrabalho {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
-    @OneToMany(mappedBy = "cargo", fetch=FetchType.EAGER)
-    private List<Funcionario> funcionario;
+    private String endereco;
+    @ManyToMany(mappedBy = "unidades", fetch = FetchType.EAGER)
+    private List<Funcionario> funcionarios;
 
     public Integer getId() {
         return id;
@@ -31,12 +32,28 @@ public class Cargo {
         this.descricao = descricao;
     }
 
+    public String getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
+    public List<Funcionario> getFuncionarios() {
+        return funcionarios;
+    }
+
+    public void setFuncionarios(List<Funcionario> funcionarios) {
+        this.funcionarios = funcionarios;
+    }
+
     @Override
     public String toString() {
-        return "Cargo{" +
+        return "UnidadeTrabalho{" +
                 "id=" + id +
                 ", descricao='" + descricao + '\'' +
-                ", funcionario=" + funcionario +
+                ", endereco='" + endereco + '\'' +
                 '}';
     }
 }
