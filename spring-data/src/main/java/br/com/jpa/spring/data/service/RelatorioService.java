@@ -22,13 +22,13 @@ public class RelatorioService {
         this.funcionarioRepository = funcionarioRepository;
     }
 
-
     public void inicial(Scanner scanner) {
         while (system) {
             System.out.println("\nESCOLHA UMA OPÇÃO:");
             System.out.println("0 - Sair");
             System.out.println("1 - Buscar funcionários por nome");
             System.out.println("2 - Buscar funcionários por nome, data contratação e salário maior");
+            System.out.println("3 - Buscar funcionários por data contratação");
 
             int action = scanner.nextInt();
 
@@ -37,7 +37,10 @@ public class RelatorioService {
                     buscarPorNome(scanner);
                     break;
                 case 2:
-                    buscarPorNomeDataContratacaoSalario(scanner);
+                    buscarPorNomeDataContratacaoSalarioMaior(scanner);
+                    break;
+                case 3:
+                    buscarPorDataContratacaoMaior(scanner);
                     break;
                 default:
                     system = false;
@@ -59,7 +62,7 @@ public class RelatorioService {
         }
     }
 
-    private void buscarPorNomeDataContratacaoSalario(Scanner scanner) {
+    private void buscarPorNomeDataContratacaoSalarioMaior(Scanner scanner) {
         System.out.println("Nome do funcionário:");
         scanner.nextLine();
         String nome = scanner.nextLine();
@@ -71,6 +74,20 @@ public class RelatorioService {
         LocalDate dataContratacao = LocalDate.parse(scanner.next(), formatter);
 
         List<Funcionario> funcionarioList = funcionarioRepository.findNomeSalarioMaiorDataContratacao(nome, salario, dataContratacao);
+        if(!funcionarioList.isEmpty()) {
+            for (Funcionario funcionario : funcionarioList) {
+                System.out.println(funcionario);
+            }
+        } else {
+            System.out.println("Funcionário não encontrado!");
+        }
+    }
+
+    private void buscarPorDataContratacaoMaior(Scanner scanner) {
+        System.out.println("Data de contratação (dia/mês/ano):");
+        LocalDate dataContratacao = LocalDate.parse(scanner.next(), formatter);
+
+        List<Funcionario> funcionarioList = funcionarioRepository.findDataContratacaoMaior(dataContratacao);
         if(!funcionarioList.isEmpty()) {
             for (Funcionario funcionario : funcionarioList) {
                 System.out.println(funcionario);

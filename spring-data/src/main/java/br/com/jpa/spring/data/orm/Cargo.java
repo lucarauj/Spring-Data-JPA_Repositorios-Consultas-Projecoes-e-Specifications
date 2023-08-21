@@ -12,7 +12,7 @@ public class Cargo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String descricao;
-    @OneToMany(mappedBy = "cargo", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "cargo")
     private List<Funcionario> funcionario;
 
     public Integer getId() {
@@ -36,7 +36,6 @@ public class Cargo {
         return "Cargo{" +
                 "id=" + id +
                 ", descricao='" + descricao + '\'' +
-                ", funcionario=" + funcionario +
                 '}';
     }
 }

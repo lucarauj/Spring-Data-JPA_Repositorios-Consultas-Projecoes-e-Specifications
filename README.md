@@ -53,5 +53,5 @@
 ## Implementações:
 
 - query findByNomeContainingIgnoreCase no FuncionarioRepository para buscar um nome ignorando letras maiúsculas/minúsculas;
-- tratamento de busca por nome vazia no método buscarPorNome;
+- tratamento de erro para buscas vazias;
 
