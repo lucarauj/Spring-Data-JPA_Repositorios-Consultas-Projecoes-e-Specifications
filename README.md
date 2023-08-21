@@ -46,10 +46,12 @@
 - @JoinColumn
 - @Fetch
 - @JoinTable
+- @Query
 
 <br>
 
 ## Implementações:
 
-- método findByNomeContainingIgnoreCase no FuncionarioRepository para buscar um nome ignorando letras maiúsculas/minúsculas;
+- query findByNomeContainingIgnoreCase no FuncionarioRepository para buscar um nome ignorando letras maiúsculas/minúsculas;
+- tratamento de busca por nome vazia no método buscarPorNome;
 
