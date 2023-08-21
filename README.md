@@ -49,3 +49,7 @@
 
 <br>
 
+## Implementações:
+
+- método findByNomeContainingIgnoreCase no FuncionarioRepository para buscar um nome ignorando letras maiúsculas/minúsculas;
+

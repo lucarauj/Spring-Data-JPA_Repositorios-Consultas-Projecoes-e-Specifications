@@ -2,6 +2,7 @@ package br.com.jpa.spring.data;
 
 import br.com.jpa.spring.data.service.CargoService;
 import br.com.jpa.spring.data.service.FuncionarioService;
+import br.com.jpa.spring.data.service.RelatorioService;
 import br.com.jpa.spring.data.service.UnidadeTrabalhoService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,10 +20,17 @@ public class SpringDataApplication implements CommandLineRunner {
 
 	private final UnidadeTrabalhoService unidadeTrabalhoService;
 
-	public SpringDataApplication(CargoService cargoService, FuncionarioService funcionarioService, UnidadeTrabalhoService unidadeTrabalhoService) {
+	private final RelatorioService relatorioService;
+
+	public SpringDataApplication(
+			CargoService cargoService,
+			FuncionarioService funcionarioService,
+			UnidadeTrabalhoService unidadeTrabalhoService,
+			RelatorioService relatorioService) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeTrabalhoService = unidadeTrabalhoService;
+		this.relatorioService = relatorioService;
 	}
 
 
@@ -40,6 +48,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("1 - Cargo");
 			System.out.println("2 - Funcionario");
 			System.out.println("3 - Unidade");
+			System.out.println("4 - Relatório");
 
 			Integer action = scanner.nextInt();
 
@@ -52,6 +61,9 @@ public class SpringDataApplication implements CommandLineRunner {
 					break;
 				case 3:
 					unidadeTrabalhoService.inicial(scanner);
+					break;
+				case 4:
+					relatorioService.inicial(scanner);
 					break;
 				default:
 					System.out.println("Finalizando");
