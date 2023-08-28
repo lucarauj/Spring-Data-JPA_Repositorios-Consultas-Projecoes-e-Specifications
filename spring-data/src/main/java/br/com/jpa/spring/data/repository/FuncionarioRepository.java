@@ -1,6 +1,7 @@
 package br.com.jpa.spring.data.repository;
 
 import br.com.jpa.spring.data.orm.Funcionario;
+import br.com.jpa.spring.data.orm.FuncionarioProjecao;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -27,5 +28,9 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Intege
 
     @Query("SELECT f FROM Funcionario f WHERE f.dataContratacao >= :data")
     List<Funcionario> findDataContratacaoMaior(LocalDate data);
+
+    //Native Query
+    @Query(value = "SELECT f.id, f.nome, f.salario FROM funcionarios f", nativeQuery = true)
+    List<FuncionarioProjecao> findFuncionarioSalario();
 
 }

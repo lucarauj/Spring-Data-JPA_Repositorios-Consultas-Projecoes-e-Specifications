@@ -1,6 +1,7 @@
 package br.com.jpa.spring.data.service;
 
 import br.com.jpa.spring.data.orm.Funcionario;
+import br.com.jpa.spring.data.orm.FuncionarioProjecao;
 import br.com.jpa.spring.data.repository.FuncionarioRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,6 +30,7 @@ public class RelatorioService {
             System.out.println("1 - Buscar funcionários por nome");
             System.out.println("2 - Buscar funcionários por nome, data contratação e salário maior");
             System.out.println("3 - Buscar funcionários por data contratação");
+            System.out.println("4 - Pesquisa de funcionários por salário");
 
             int action = scanner.nextInt();
 
@@ -41,6 +43,9 @@ public class RelatorioService {
                     break;
                 case 3:
                     buscarPorDataContratacaoMaior(scanner);
+                    break;
+                case 4:
+                    pesquisaFuncionarioSalario();
                     break;
                 default:
                     system = false;
@@ -95,5 +100,10 @@ public class RelatorioService {
         } else {
             System.out.println("Funcionário não encontrado!");
         }
+    }
+
+    private void pesquisaFuncionarioSalario() {
+        List<FuncionarioProjecao> list = funcionarioRepository.findFuncionarioSalario();
+        list.forEach(f -> System.out.println("Funcionário: id: " + f.getId() + " | nome: " + f.getNome() + " | salario: " + f.getSalario()));
     }
 }
