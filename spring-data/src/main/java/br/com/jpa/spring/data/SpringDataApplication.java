@@ -1,9 +1,6 @@
 package br.com.jpa.spring.data;
 
-import br.com.jpa.spring.data.service.CargoService;
-import br.com.jpa.spring.data.service.FuncionarioService;
-import br.com.jpa.spring.data.service.RelatorioService;
-import br.com.jpa.spring.data.service.UnidadeTrabalhoService;
+import br.com.jpa.spring.data.service.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,15 +19,19 @@ public class SpringDataApplication implements CommandLineRunner {
 
 	private final RelatorioService relatorioService;
 
+	public final RelatorioFuncionarioDinamico funcionarioDinamico;
+
 	public SpringDataApplication(
 			CargoService cargoService,
 			FuncionarioService funcionarioService,
 			UnidadeTrabalhoService unidadeTrabalhoService,
-			RelatorioService relatorioService) {
+			RelatorioService relatorioService,
+			RelatorioFuncionarioDinamico funcionarioDinamico) {
 		this.cargoService = cargoService;
 		this.funcionarioService = funcionarioService;
 		this.unidadeTrabalhoService = unidadeTrabalhoService;
 		this.relatorioService = relatorioService;
+		this.funcionarioDinamico = funcionarioDinamico;
 	}
 
 
@@ -49,6 +50,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - Funcionario");
 			System.out.println("3 - Unidade");
 			System.out.println("4 - Relatório");
+			System.out.println("5 - Relatório dinâmico");
 
 			Integer action = scanner.nextInt();
 
@@ -64,6 +66,9 @@ public class SpringDataApplication implements CommandLineRunner {
 					break;
 				case 4:
 					relatorioService.inicial(scanner);
+					break;
+				case 5:
+					funcionarioDinamico.inicial(scanner);
 					break;
 				default:
 					System.out.println("Finalizando");
