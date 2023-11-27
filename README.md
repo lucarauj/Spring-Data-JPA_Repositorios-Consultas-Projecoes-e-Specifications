@@ -36,19 +36,19 @@
 
 ## Anotações:
 
-- @Entity
-- @Table
-- @Id
-- @GeneratedValue(strategy = GenerationType.IDENTITY)
-- @Repository
-- @Service
-- @OneToMany
-- @ManyToOne
-- @ManyToMany
-- @JoinColumn
-- @Fetch
-- @JoinTable
-- @Query
+- [@Entity](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@Table](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@Id](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@GeneratedValue(strategy = GenerationType.IDENTITY)](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@Repository](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@Service](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@OneToMany](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@ManyToOne](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@ManyToMany](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@JoinColumn](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@Fetch](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@JoinTable](https://github.com/lucarauj/Anotacoes-Spring-Framework)
+- [@Query](https://github.com/lucarauj/Anotacoes-Spring-Framework)
 
 <br>
 
